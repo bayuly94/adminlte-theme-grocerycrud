@@ -378,6 +378,10 @@
             data_to_send[this.csrf_field.name] = this.csrf_field.value;
         }
 
+        /* Fix grocery crud */
+        if ( ! data_to_send.search_text.length ) Object.assign(data_to_send, { search_text: "" });
+        if ( ! data_to_send.search_field.length ) Object.assign(data_to_send, { search_field: "" });
+
         $.ajax({
             beforeSend: function () {
                 gcrud_container.addClass(Datagrid.CLASS_LOADING);
@@ -709,6 +713,10 @@
                 if (datagrid_object.csrf_field !== null) {
                     data_to_send[datagrid_object.csrf_field.name] = datagrid_object.csrf_field.value;
                 }
+
+                /* Fix grocery crud */
+                if ( ! data_to_send.search_text.length ) Object.assign(data_to_send, { search_text: "" });
+                if ( ! data_to_send.search_field.length ) Object.assign(data_to_send, { search_field: "" });
 
                 $.ajax({
                     beforeSend: function () {
